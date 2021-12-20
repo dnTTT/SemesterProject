@@ -6,13 +6,18 @@ import Handlers.Helpers.FileHelper as FileHelper
 
 class DefaultWarehouse:
 	def __init__(self):
-		self.relativePath = os.path.join("Data", "Stock")
+		self.relative_path = os.path.join("Data", "Stock")
 		self.lastId = None
 		self.data = []
-		self.Initialize(self)
 
 	def AddProduct(self, product_name, product_price, product_stock):
-		self.data.append(Product(product_name, product_price, product_stock))
+		prod = Product()
+		prod.id = self.lastId
+		prod.name = product_name
+		prod.price = product_price
+		prod.numberInStock = product_stock
+		prod.reserved = 0
+		self.data.append(prod)
 		self.lastId += 1
 
 	def Initialize(self):
